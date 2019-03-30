@@ -2,6 +2,15 @@
 
 C++ and SFML-based Minesweeper game. Can you play this classic?
 
-Unfortunately, I have switched to Mac and am unable to change anything or even test this game. Currently, I am stuck with a not-so-nice difficulty and board size. If you are a Windows User, you can tweak and modify the code.
+## Running the program
 
-Have fun!
+### Windows
+  Run `mines.exe` file
+
+### Mac
+
+  I am currently finding a good IDE to revive this project which was developed on Windows.
+
+## Modifying Board Size
+
+While I am still unable to rebuild this program, you can modify the `WIDTH` and `HEIGHT` variables in `mines.cpp` file and recompile using your IDE of choice. 
