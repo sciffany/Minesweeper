@@ -22,7 +22,7 @@ Below are some in-game screenshots:
 ## Implementation
 
 ### Data structures
-Program makes use of three 2D arrays to store the following information:
+Program makes use of three 2D std::vectors to store the following information:
  * Number of neighbouring bombs (any number >=9 signifies bomb within itself) 
  * Boolean cover (whether or not the tile has been revealed)
  * Tile icon (whether the tile has been flagged/marked)
@@ -30,7 +30,7 @@ Program makes use of three 2D arrays to store the following information:
 ### Algorithms
 
 I considered two algorithms for implementing this:
-#### Breadth-first search
+#### Current implementation: Breadth-first search
 How it works:
  * Start opening adjacent tiles after the user has chosen a tile to click.
  * Uses breadth-first search algorithm to look for all the tile nearby until numbered tiles are found.
@@ -39,8 +39,7 @@ Pros:
 Cons:
  * Takes a while to load when number of tiles to be opened is large.
 
-#### Breadth-first search
-Alternative implementation (original idea):
+#### Alternative implementation (original idea): Union-find Algorithm
 How it works:
  * Identify tiles within the same “island” (group of tiles surrounded by numbered tiles in standard Minesweeper game) before game starts
  * Use union-find algorithm to find all these tiles
