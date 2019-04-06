@@ -83,7 +83,7 @@ Program makes use of three 2D `std::vectors` to store the following information:
 ### Algorithms
 
 I considered two algorithms for implementing this:
-#### Current implementation: Breadth-first search
+#### Breadth-first search (Current implementation)
   **How it works**:
    * Start opening adjacent tiles after the user has chosen a tile to click.
    * Uses breadth-first search algorithm to look for all the tile nearby until numbered tiles are found.
@@ -94,7 +94,7 @@ I considered two algorithms for implementing this:
   **Cons**:
    * Takes a while to load when number of tiles to be opened is large.
 
-#### Alternative implementation (original idea): Union-find Algorithm
+#### Union-find (Alternative implementation)
   **How it works**:
    * Identify tiles within the same “island” (group of tiles surrounded by numbered tiles in standard Minesweeper game) before game starts
    * Use union-find algorithm to find all these tiles
@@ -106,6 +106,8 @@ The following were used to create this game:
  * Simple and Fast Multimedia Library (SFML)
 
 ## Credits
+
+Developed by: Tiffany Chong
 
 ### SFML tutorial
 Coding Made Easy: https://www.youtube.com/channel/UCas000yWtwjvFzD2zB9Nzmw
