@@ -4,64 +4,55 @@
 #include<sstream>
 #include <time.h>
 
-int WIDTH= 10;
-int HEIGHT= 10;
-int BOMBS = 2;
-int sTS = 32; //source tile size
-int TS = 40;
-const char * SKINTYPE = "minesweeper2.bmp";
+static int WIDTH= 20;
+static int HEIGHT= 10;
+static int BOMBS = 30;
+static int sTS = 300; //source tile size
+static int TS = 32;
+static const char * SKINTYPE = "minesweeper.bmp";
 
 typedef std::vector< std::vector<int> > grid;
-//typedef std::vector< std::vector<bool> > boolGrid;
 
-// function to generate a random grid with bombs and numbers
-grid makeGrid(int height, int width, int bombs) // makes a numerical grid
-{
+/**
+ * function to generate a random int grid with bombs and numbers
+ */
+grid makeGrid(int height, int width) {
     //create an empty grid
-    grid numGrid;
-    std::vector<int> zeroRow; // create empty row
-    for (int j=0; j<width; j++)
-        {zeroRow.push_back(0);}
-    for (int i =0; i<height; i++)
-    {numGrid.push_back(zeroRow);}
+    grid numGrid; 
+    std::vector<int> zeroRow;
+    for (int j = 0; j < width; j++) zeroRow.push_back(0);
+    for (int i = 0; i < height; i++) numGrid.push_back(zeroRow);
 
     // place bombs and hints
-    for (int b = 0; b<BOMBS; b++)
-    {
+    for (int b = 0; b<BOMBS; b++) {
+        //choose random x and y location for bomb
         int x = rand()% width;
         int y = rand()% height;
 
-        while (numGrid[y][x]>=9)
-        {
+        while (numGrid[y][x]>=9) { //9 or more represents bomb-occupied location
             x = rand()% width;
             y = rand()% height;
         }
 
         numGrid[y][x] = 9;
         // add one hint each of the surrounding bombs
-        if (x>0 && x<width-1)
-        {
+
+        if (x > 0 && x < width-1) {
             numGrid[y][x-1] +=1;
             numGrid[y][x+1] +=1;
 
-            if (y<height-1)
-            {
+            if (y<height-1) {
                 numGrid[y+1][x-1] +=1;
                 numGrid[y+1][x] +=1;
                 numGrid[y+1][x+1] +=1;
             }
-            if (y>0)
-            {
+            if (y>0) {
                 numGrid[y-1][x-1] +=1;
                 numGrid[y-1][x] +=1;
                 numGrid[y-1][x+1] +=1;
-
             }
-
-
         }
-        else if (x<=0)
-        {
+        else if (x <= 0) {
             numGrid[y][1] +=1;
 
             if (y<height-1)
@@ -74,29 +65,20 @@ grid makeGrid(int height, int width, int bombs) // makes a numerical grid
                 numGrid[y-1][0] +=1;
                 numGrid[y-1][1] +=1;
             }
-
-
         }
-        else if (x>=width-1)
-        {
+        else if (x >= width-1) {
             numGrid[y][width-2] +=1;
 
-            if (y<width-1)
-            {
+            if (y<width-1) {
                 numGrid[y+1][width-1] +=1;
                 numGrid[y+1][width-2] +=1;
             }
-            if (y>0)
-            {
+            if (y>0) {
                 numGrid[y-1][width-1] +=1;
                 numGrid[y-1][width-2] +=1;
             }
-
+        }
     }
-
-
-    }
-
     return numGrid;
 
 }
@@ -133,7 +115,6 @@ sf::VertexArray makeGArray(grid numGrid)
             v+=4;
         }
     }
-    return GArray;
     return GArray;
 }
 
@@ -332,7 +313,6 @@ bool openBox(grid &CGrid, int lmouseX, int lmouseY, grid numGrid, int &boxesOpen
 //opens all the boxes with bombs when the game is lost
 int openBomb(grid &CGrid, grid numGrid, int lmouseX, int lmouseY)
 {
-
     for (int i=0; i<numGrid.size(); i++)
     {
         for (int j=0; j<numGrid[0].size(); j++)
@@ -396,7 +376,7 @@ int main()
 
 
     //grid
-    grid numGrid = makeGrid(HEIGHT,WIDTH,BOMBS);
+    grid numGrid = makeGrid(HEIGHT,WIDTH);
     sf::VertexArray GArray = makeGArray(numGrid);
     gMap myMap;
     myMap.setPosition(0,TS*3);
@@ -614,7 +594,7 @@ int main()
                     {
                         std::cout << "HI";
                         // Handle ASCII characters only
-                        if (wEvent.TextEvent.unicode < 128)
+                        if (wEvent.text.unicode < 128)
                         {
                             str += static_cast<char>(event.key.code);
                             name.setString(str);
@@ -631,7 +611,7 @@ int main()
         }
         if (!playing && !win)
         {
-            sf::RenderWindow loser(sf::VideoMode(600,200), "Better Luck Next Time");
+            sf::RenderWindow loser(sf::VideoMode(600,100), "Better Luck Next Time");
 
             sf::RectangleShape rect;
             rect.setSize(sf::Vector2f(600, 100));
