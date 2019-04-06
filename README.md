@@ -53,17 +53,20 @@ Sample variables.
  
  
  * `BOMBS` - number of bombs planted into the game
+ * `TS` - tile size in your screen
  * `char * SKINTYPE` - source file name for Minesweeper skin
+ * `sTS` - Tile size of source image in pixels
  
 Here are some available designs:
 
-![alt text](/minesweeper2.bmp) (Tile size: 24px)
-
-<img src="minesweeper.bmp" width="96px"></img> (Tile size: 200px)
+| File Name       | Tile           | Source tile size  |
+| ------------- |-------------| -----|
+| `minesweeper2.bmp` | ![alt text](/minesweeper2.bmp) | 24px |
+| `minesweeper.bmp`  | <img src="minesweeper.bmp" width="96px"></img>     | 200px |
 
  
- * `sTS` - Tile size of source image in pixels
- * `TS` - tile size as seen by viewer.
+
+
  
 
 
