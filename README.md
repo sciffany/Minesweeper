@@ -41,62 +41,46 @@ Play this game like your standard Minesweeper game. Right-click to flag tiles th
 The following are variables that can be edited in  file:
  * `WIDTH`and `HEIGHT` - number of tiles in the Minesweeper board 
 
-Sample variables.
-
-`WIDTH = 20; HEIGHT = 10;`
-
- <img src="/screenshots/start.png" width="400px"></img>
- 
-`WIDTH = 25; HEIGHT = 15;` 
-
- <img src="/screenshots/game.png" width="400px"></img>
- 
+| Variable Configuration | Screenshot |
+| -- | -- |
+| `WIDTH = 20; HEIGHT = 10;` | <img src="/screenshots/start.png" width="400px"></img> |
+|`WIDTH = 25; HEIGHT = 15;` | <img src="/screenshots/game.png" width="400px"></img> |
  
  * `BOMBS` - number of bombs planted into the game
  * `TS` - tile size in your screen
  * `char * SKINTYPE` - source file name for Minesweeper skin
  * `sTS` - Tile size of source image in pixels
  
-Here are some available designs:
+Here are some available skins:
 
 | File Name       | Tile           | Source tile size  |
 | ------------- |-------------| -----|
 | `minesweeper2.bmp` | ![alt text](/minesweeper2.bmp) | 24px |
 | `minesweeper.bmp`  | <img src="minesweeper.bmp" width="96px"></img>     | 200px |
 
- 
-
-
- 
-
-
-
-
-## Implementation
-
-### Data structures
+## Implementation (Data structures)
 Program makes use of three 2D `std::vectors` to store the following information:
  * Number of neighbouring bombs (any number >=9 signifies bomb within itself) 
  * Boolean cover (whether or not the tile has been revealed)
  * Tile icon (whether the tile has been flagged/marked)
 
-### Algorithms
+## Implementation (Algorithms)
 
 I considered two algorithms for implementing this:
-#### Breadth-first search (Current implementation)
+### Breadth-first search (Current implementation)
   **How it works**:
-   * Start opening adjacent tiles after the user has chosen a tile to click.
-   * Uses breadth-first search algorithm to look for all the tile nearby until numbered tiles are found.
+   * The program will only begin to look for adjacent tiles to open once user has clicked on a tile.
+   * In the function, `openBox`, we breadth-first search algorithm to look for all the tile nearby until numbered tiles are found.
 
   **Pros**:
-   * Implementation is simplest
+   * Simple to implement
 
   **Cons**:
-   * Takes a while to load when number of tiles to be opened is large.
+   * Might take a while to load when there is a large number of tiles to be opened.
 
-#### Union-find (Alternative implementation)
+### Union-find (Alternative implementation)
   **How it works**:
-   * Identify tiles within the same “island” (group of tiles surrounded by numbered tiles in standard Minesweeper game) before game starts
+   * Identify tiles within the same “island” (group of tiles surrounded by numbered tiles to be opened during a single tile click) before game starts
    * Use union-find algorithm to find all these tiles
    * Not possible to implement simply as certain numbered tiles could belong to different islands depending on how the user clicks on the tiles during the game.
  
@@ -104,10 +88,15 @@ I considered two algorithms for implementing this:
 The following were used to create this game: 
  * C++
  * Simple and Fast Multimedia Library (SFML)
+ 
+## Future Development
+
+* Function calls to be made recursive and elegant
 
 ## Credits
 
 Developed by: Tiffany Chong
 
-### SFML tutorial
-Coding Made Easy: https://www.youtube.com/channel/UCas000yWtwjvFzD2zB9Nzmw
+SFML tutorial: Coding Made Easy (https://www.youtube.com/channel/UCas000yWtwjvFzD2zB9Nzmw)
+
+
